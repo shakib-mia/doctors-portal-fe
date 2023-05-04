@@ -1,5 +1,5 @@
 import React from 'react';
-import headerBG from './../../assets/images/landing-bg.png';
+import headerBG from './../../assets/images/landing-bg.webp';
 import chair from './../../assets/images/chair.webp'
 import { Link } from 'react-router-dom';
 import clock from './../../assets/icons/clocks.webp'
