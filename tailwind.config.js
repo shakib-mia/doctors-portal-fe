@@ -9,7 +9,8 @@ module.exports = {
       'heading-3': '22px',
       'heading-4': '20px',
       'heading-5': '18px',
-      'normal': '16px'
+      'normal': '16px',
+      'sm': '14px'
     },
     colors: {
       primary: {

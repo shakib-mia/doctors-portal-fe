@@ -42,7 +42,7 @@ const Navbar = () => {
                 height: 0,
                 duration: 0.2
             })
-    }, [nav])
+    }, [nav]);
 
     return (
         <nav className='px-[11px] lg:px-[90px] py-[16px] flex lg:items-center text-right justify-between sticky top-0 bg-white'>

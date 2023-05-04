@@ -31,7 +31,7 @@ const Services = () => {
 
                 <div className="grid grid-cols-1 lg:grid-cols-3 mt-[70px] gap-[56px] lg:gap-[34px] flex-col lg:flex-row">
                     {
-                        services.map(({ image, heading, paragraph }, key) => <div key={key} className='p-[56px] shadow-[3px_4px_10px_2px_rgba(0,0,0,0.05)] rounded-[18px]'>
+                        services.map(({ image, heading, paragraph }, key) => <div key={key} className='py-[40px] px-[20px] lg:p-[56px] shadow-[3px_4px_10px_2px_rgba(0,0,0,0.05)] rounded-[18px]'>
                             <img src={image} className='w-auto h-[115px] mx-auto' alt="" />
                             <h4 className='text-heading-4 font-semibold text-center mt-[38px] lg:mt-[34px]'>{heading}</h4>
                             <p className='text-normal text-center'>{paragraph}</p>
