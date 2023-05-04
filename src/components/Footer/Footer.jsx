@@ -48,18 +48,19 @@ const Footer = () => {
         }
     ]
     return (
-        <footer className='px-[98px] pt-[76px] pb-[43px] bg-no-repeat bg-cover flex justify-between' style={{ backgroundImage: `url(${bg})` }}>
+        <footer className='px-[36px] lg:px-[98px] pt-[54px] lg:pt-[76px] pb-[69px] lg:pb-[43px] bg-no-repeat bg-[size:0] lg:bg-cover flex flex-col lg:flex-row justify-between gap-[103px] lg:gap-0' style={{ backgroundImage: `url(${bg})` }}>
             {/* <div>Lorem ipsum dolor sit.</div>
             <div>Neque dolorem earum accusantium.</div>
             <div>Debitis iste expedita eius.</div> */}
-            {items.map(item => <div>
+            {items.map((item, id) => <div key={id}>
                 <h5 className='text-heading-5 font-bold text-[#939393] mb-[19px]'>{item.heading}</h5>
                 <ul>
-                    {item.items.map(({ link, title }) => <li className='mb-[14px]'>
+                    {item.items.map(({ link, title }, id) => <li key={id} className='mb-[14px]'>
                         {link.length ? <NavLink className='text-normal' to={link}>{title}</NavLink> : <>{title}</>}
                     </li>)}
                 </ul>
             </div>)}
+            <p className="text-center text-sm">Copyright 2022 All Rights Reserved</p>
         </footer>
     );
 };

@@ -36,7 +36,7 @@ const Testimonial = () => {
             </div>
 
             <div className='my-[75px] lg:mt-[88px] lg:mb-[149px] grid grid-cols-1 lg:grid-cols-3 items-center gap-[57px] px-[23px] lg:px-[85px]'>
-                {testimonials.map((props) => <Card {...props} />)}
+                {testimonials.map((props, id) => <Card key={id} {...props} />)}
             </div>
         </div>
     );

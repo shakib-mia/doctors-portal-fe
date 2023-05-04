@@ -8,7 +8,6 @@ import Footer from './components/Footer/Footer';
 
 function App() {
   const location = useLocation();
-  console.log(location.pathname);
   return <div className='text-dark'>
     <Navbar />
     <Routes>

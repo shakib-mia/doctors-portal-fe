@@ -12,7 +12,7 @@ body {
 }
 
 .btn {
-  @apply w-[120px] h-[48px] flex items-center justify-center rounded-[8px] text-white font-bold
+  @apply w-[120px] h-[48px] flex items-center justify-center rounded-[8px] text-white font-bold text-sm
 }
 
 .gradient {

@@ -1,7 +1,12 @@
 import React from 'react';
 
 const InputField = (props) => {
-    return <input {...props} />;
+    const { label, id } = props;
+    // console.log(!!label);
+    return <>
+        {label && <label htmlFor={id}>{label}</label>}
+        <input {...props} />
+    </>;
 };
 
 export default InputField;
