@@ -89,7 +89,7 @@ const Navbar = () => {
     }, [nav])
 
     return (
-        <nav className='px-[11px] lg:px-[90px] py-[16px] flex lg:items-center text-right justify-between sticky top-0 bg-white'>
+        <nav className='px-[11px] lg:px-[90px] py-[16px] flex lg:items-center text-right justify-between sticky top-0 bg-white z-[1]'>
             <Link to='/' className='text-heading-5'>Doctors Portal</Link>
 
             <ul className='hidden lg:flex'>

@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 const Login = () => {
     return (
-        <div className='h-screen flex items-center justify-center'>
+        <div className='h-screen w-screen absolute top-0 flex items-center justify-center'>
             <div className='w-11/12 lg:w-1/3 p-[25px] shadow-[3px_4px_10px_2px_rgba(0,0,0,0.05)] rounded-[10px]'>
                 <h4 className="text-heading-4 text-center">Login</h4>
 
@@ -16,7 +16,7 @@ const Login = () => {
                 </form>
 
 
-                <div className='flex gap-[6px] justify-center mt-[11px]'>
+                <div className='flex gap-[6px] justify-center mt-[11px] text-[12px]'>
                     <p>New to Doctors Portal?</p>
                     <p>
                         <Link to='/register' className=' text-secondary'>Create new account</Link>
@@ -29,7 +29,7 @@ const Login = () => {
                     <hr className='w-full h-[1px] bg-[#CFCFCF] mr-[5px]' />
                 </div>
 
-                <button className='w-full text-center py-[13px] rounded-[8px] border-[1px] border-dark'>CONTINUE WITH GOOGLE</button>
+                <button className='w-full text-center py-[13px] rounded-[8px] border-[1px] border-dark hover:bg-dark hover:text-white'>CONTINUE WITH GOOGLE</button>
             </div>
         </div>
     );
