@@ -2,17 +2,28 @@ import React from 'react';
 import InputField from '../../components/InputField/InputField';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import { getAuth, signOut } from 'firebase/auth';
+import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth'
+import app from '../../firebase.config';
+
 
 const Register = () => {
+    const auth = getAuth(app)
+
+    const [
+        createUserWithEmailAndPassword,
+        user,
+        loading,
+        error,
+    ] = useCreateUserWithEmailAndPassword(auth);
+
     const handleRegister = (e) => {
         // axios
         e.preventDefault();
         // console.log(e.target.name.value);
-        axios.post('http://localhost:5000/register', {
-            email: e.target.email.value,
-            name: e.target.name.value,
-            password: e.target.password.value,
-        }).then(res => console.log(res))
+
+        createUserWithEmailAndPassword(e.target.email.value, e.target.password.value)
+            .then(res => console.log(res))
     }
 
     return (
