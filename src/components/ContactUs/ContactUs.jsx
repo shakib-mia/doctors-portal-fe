@@ -15,7 +15,7 @@ const ContactUs = () => {
             <InputField placeholder="Email Address" name="email" />
             <InputField placeholder="Subject" name="subject" />
             <textarea rows={5} className="rounded-[8px] px-[19px] py-[15px] w-full lg:w-1/3 mb-[19px] focus:outline-none" placeholder="Your Message" name="message" />
-            <InputField type="submit" value="Submit" />
+            <InputField type="submit" value="Submit" className='gradient px-[35px] py-[15px] rounded-[8px] text-sm font-bold text-white' />
         </div>
     );
 };

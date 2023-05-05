@@ -1,29 +1,42 @@
 import React from 'react';
 import InputField from '../../components/InputField/InputField';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { getAuth, signOut } from 'firebase/auth';
+import { getAuth } from 'firebase/auth';
 import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth'
 import app from '../../firebase.config';
+import { url } from '../../constants';
 
 
 const Register = () => {
-    const auth = getAuth(app)
+    const auth = getAuth(app);
+    const navigate = useNavigate();
 
-    const [
-        createUserWithEmailAndPassword,
-        user,
-        loading,
-        error,
-    ] = useCreateUserWithEmailAndPassword(auth);
+    const [createUserWithEmailAndPassword] = useCreateUserWithEmailAndPassword(auth);
 
     const handleRegister = (e) => {
         // axios
         e.preventDefault();
         // console.log(e.target.name.value);
 
+
         createUserWithEmailAndPassword(e.target.email.value, e.target.password.value)
-            .then(res => console.log(res))
+            .then(res => {
+                if (res.user) {
+                    const config = {
+                        headers: {
+                            email: e.target.email.value,
+                            name: e.target.name.value
+                        }
+                    }
+                    axios.get(url + 'register', config)
+                        .then(res => {
+                            localStorage.setItem('token', res.data.token);
+                            window.location.reload()
+                            navigate('/')
+                        })
+                }
+            })
     }
 
     return (
@@ -34,8 +47,8 @@ const Register = () => {
                 <form onSubmit={handleRegister} className="mt-[37px]">
                     <InputField name='name' label="Name" id='name' page='register' />
                     <InputField name='email' label="Email" id='email' page='register' />
-                    <InputField name='password' label="Password" id='password' page='register' />
-                    <InputField type='submit' className='w-full bg-dark mt-[18px] py-[13px] rounded-[8px] text-dark-200' value="LOGIN" />
+                    <InputField type='password' name='password' label="Password" id='password' page='register' />
+                    <InputField type='submit' className='w-full bg-dark mt-[18px] py-[13px] rounded-[8px] text-dark-200 cursor-pointer' value="REGISTER" />
                 </form>
 
 

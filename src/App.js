@@ -5,6 +5,8 @@ import Login from './pages/Login/Login';
 import Register from './pages/Register/Register';
 import Navbar from './components/Navbar/Navbar';
 import Footer from './components/Footer/Footer';
+import Appointments from './pages/Appointments/Appointments';
+import RequireAuth from './RequireAuth';
 
 function App() {
   const location = useLocation();
@@ -14,6 +16,9 @@ function App() {
       <Route path='/' element={<Home />} />
       <Route path='/login' element={<Login />} />
       <Route path='/register' element={<Register />} />
+      <Route path='/appointments' element={<RequireAuth>
+        <Appointments />
+      </RequireAuth>} />
     </Routes>
     {location.pathname === '/login' || location.pathname === '/register' ? <></> : <Footer />}
   </div>;

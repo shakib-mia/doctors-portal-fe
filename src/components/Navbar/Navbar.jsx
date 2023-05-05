@@ -1,8 +1,41 @@
+import axios from 'axios';
 import { gsap } from 'gsap';
 import React, { useEffect, useRef, useState } from 'react';
-import { Link, NavLink, useLocation } from 'react-router-dom';
+import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom';
+import { url } from '../../constants';
 
 const Navbar = () => {
+    const [userData, setUserData] = useState({});
+
+    const { pathname } = useLocation();
+    const [nav, setNav] = useState(false);
+    const navbarRef = useRef(null);
+    const navigate = useNavigate()
+
+    useEffect(() => {
+        if (nav) {
+            gsap.to(navbarRef.current, {
+                height: 'auto',
+                duration: 0.2
+            })
+        } else {
+            gsap.to(navbarRef.current, {
+                height: 0,
+                duration: 0.2
+            })
+        }
+    }, [nav]);
+
+    useEffect(() => {
+        const config = {
+            headers: {
+                token: localStorage.getItem('token')
+            }
+        }
+        axios.get(url + 'user', config)
+            .then(res => setUserData(res.data))
+    }, [])
+
     const listItem = [
         {
             text: 'Home',
@@ -20,28 +53,19 @@ const Navbar = () => {
         }, {
             text: 'Contact Us',
             link: '/contact-us'
-        }, {
+        }, userData ? {
+            text: <>{userData.name ? <span>{userData.name}</span> : userData.email} <button className='bg-[#d32f2f] text-white px-5 py-2 rounded' onClick={() => {
+                localStorage.removeItem('token');
+                navigate('/')
+                window.location.reload();
+            }}>Sign out</button>
+            </>,
+            link: ''
+        } : {
             text: 'Login',
             link: '/login'
         },
     ]
-    const { pathname } = useLocation();
-    const [nav, setNav] = useState(false);
-    const navbarRef = useRef(null)
-
-    useEffect(() => {
-        if (nav) {
-            gsap.to(navbarRef.current, {
-                height: 'auto',
-                duration: 0.2
-            })
-        } else {
-            gsap.to(navbarRef.current, {
-                height: 0,
-                duration: 0.2
-            })
-        }
-    }, [nav]);
 
     const topRef = useRef(null)
     const middleRef = useRef(null)
@@ -92,7 +116,7 @@ const Navbar = () => {
         <nav className='px-[11px] lg:px-[90px] py-[16px] flex lg:items-center text-right justify-between sticky top-0 bg-white z-[1]'>
             <Link to='/' className='text-heading-5'>Doctors Portal</Link>
 
-            <ul className='hidden lg:flex'>
+            <ul className='hidden lg:flex items-center'>
                 {listItem.map(({ text, link }, key) => <li key={key}>
                     <NavLink className={`px-[13px] py-[11px] ${pathname && pathname === link && 'bg-dark-800 text-white rounded-[8px]'} `} to={link}>{text}</NavLink>
                 </li>)}
