@@ -1,6 +1,6 @@
 import { gsap } from 'gsap';
 import React, { useEffect, useRef, useState } from 'react';
-import { NavLink, useLocation } from 'react-router-dom';
+import { Link, NavLink, useLocation } from 'react-router-dom';
 
 const Navbar = () => {
     const listItem = [
@@ -90,7 +90,7 @@ const Navbar = () => {
 
     return (
         <nav className='px-[11px] lg:px-[90px] py-[16px] flex lg:items-center text-right justify-between sticky top-0 bg-white'>
-            <h6 className='text-heading-5'>Doctors Portal</h6>
+            <Link to='/' className='text-heading-5'>Doctors Portal</Link>
 
             <ul className='hidden lg:flex'>
                 {listItem.map(({ text, link }, key) => <li key={key}>
