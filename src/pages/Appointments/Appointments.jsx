@@ -15,8 +15,8 @@ const Appointments = () => {
             }
         }
 
-        axios.get(url + 'appointments', config).then(res => {
-            setAppointments(res.data)
+        axios.get(url + 'services', config).then(res => {
+            setAppointments(res.data.services)
             console.log(res.data);
         })
     }, [])
