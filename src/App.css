@@ -18,3 +18,31 @@ body {
 .gradient {
   @apply bg-gradient-to-r from-secondary to-primary
 }
+
+.react-calendar__navigation {
+  @apply flex justify-between
+}
+
+.react-calendar__navigation__prev2-button,
+.react-calendar__navigation__next2-button {
+  @apply hidden
+}
+
+.react-calendar__month-view__days__day--neighboringMonth {
+  /* display: none; */
+  opacity: 0;
+}
+
+.react-calendar__month-view__weekdays__weekday {
+  text-align: center;
+}
+
+.react-calendar__month-view__days {
+  row-gap: 20px;
+  margin-top: 20px;
+}
+
+.react-calendar__month-view__days abbr:where([title]) {
+  border-bottom: none !important;
+  text-decoration: none !important;
+}
