@@ -6,31 +6,32 @@ import { getAuth } from 'firebase/auth';
 import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth'
 import app from '../../firebase.config';
 import { url } from '../../constants';
+import GoogleSignIn from '../../components/GoogleSignIn/GoogleSignIn';
 
 
 const Register = () => {
     const auth = getAuth(app);
     const navigate = useNavigate();
 
-    const [createUserWithEmailAndPassword] = useCreateUserWithEmailAndPassword(auth);
+    const [createUserWithEmailAndPassword, user, loading, error] = useCreateUserWithEmailAndPassword(auth);
+    // const [signInWithGoogle, user, loading, error] = useSignInWithGoogle(auth);
+
 
     const handleRegister = (e) => {
-        // axios
         e.preventDefault();
-        // console.log(e.target.name.value);
-
 
         createUserWithEmailAndPassword(e.target.email.value, e.target.password.value)
             .then(res => {
-                if (res.user) {
+                if (res?.user) {
                     const config = {
                         headers: {
                             email: e.target.email.value,
                             name: e.target.name.value
                         }
                     }
+
                     axios.get(url + 'register', config)
-                        .then(res => {
+                        .then((res) => {
                             localStorage.setItem('token', res.data.token);
                             window.location.reload()
                             navigate('/')
@@ -48,7 +49,8 @@ const Register = () => {
                     <InputField name='name' label="Name" id='name' page='register' />
                     <InputField name='email' label="Email" id='email' page='register' />
                     <InputField type='password' name='password' label="Password" id='password' page='register' />
-                    <InputField type='submit' className='w-full bg-dark mt-[18px] py-[13px] rounded-[8px] text-dark-200 cursor-pointer' value="REGISTER" />
+                    <p className='text-[red] first-letter:capitalize font-medium mt-3'>{error && error.message?.split("(")[1]?.split(")")[0]?.split('/')[1]?.split("-").join(" ")}</p>
+                    <InputField type='submit' disabled={loading} className='w-full bg-dark disabled:bg-dark-400 mt-[18px] py-[13px] rounded-[8px] text-dark-200 cursor-pointer disabled:cursor-not-allowed' value="REGISTER" />
                 </form>
 
 
@@ -65,7 +67,7 @@ const Register = () => {
                     <hr className='w-full h-[1px] bg-[#CFCFCF] mr-[5px]' />
                 </div>
 
-                <button className='w-full text-center py-[13px] rounded-[8px] border-[1px] border-dark hover:bg-dark hover:text-white'>CONTINUE WITH GOOGLE</button>
+                <GoogleSignIn />
             </div>
         </div>
     );

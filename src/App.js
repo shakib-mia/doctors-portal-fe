@@ -8,8 +8,29 @@ import Footer from './components/Footer/Footer';
 import Appointments from './pages/Appointments/Appointments';
 import RequireAuth from './RequireAuth';
 
+
 function App() {
   const location = useLocation();
+
+  // const token = localStorage.getItem('token');
+  // console.log(token);
+
+  // useEffect(() => {
+  //   const config = {
+  //     headers: {
+  //       token
+  //     }
+  //   }
+  //   axios.get(url + 'verify-token', config)
+  //     .then(res => {
+  //       console.log(res.data.valid);
+  //       // if (!res.data.valid) {
+  //       //   localStorage.removeItem('token')
+  //       // }
+  //     })
+  // }, [])
+
+
   return <div className='text-dark'>
     <Navbar />
     <Routes>
