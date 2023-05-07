@@ -34,16 +34,16 @@ const Appointments = () => {
     }, [fullDate])
 
 
-    useEffect(() => {
-        // details === -1 ? document.body.classList.remove("overflow-hidden") : document.body.classList.add("overflow-hidden")
-        if (details > -1) {
-            window.scrollTo(0, 0);
-            document.body.classList.add('overflow-hidden')
-        } else {
-            document.body.classList.remove('overflow-hidden')
+    // useEffect(() => {
+    //     // details === -1 ? document.body.classList.remove("overflow-hidden") : document.body.classList.add("overflow-hidden")
+    //     if (details > -1) {
+    //         window.scrollTo(0, 0);
+    //         document.body.classList.add('overflow-hidden')
+    //     } else {
+    //         document.body.classList.remove('overflow-hidden')
 
-        }
-    }, [details])
+    //     }
+    // }, [details])
 
 
     useEffect(() => {
@@ -55,6 +55,15 @@ const Appointments = () => {
         axios.get(url + 'user', config)
             .then(res => setUserData(res.data))
     }, [])
+
+    if (details >= 0) {
+        // window.scrollTo(0, 0)
+        document.body.style.overflowY = 'hidden'
+        console.log(details);
+    } else {
+        document.body.style.overflowY = 'auto'
+
+    }
 
     return (
         <>

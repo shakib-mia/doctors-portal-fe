@@ -7,6 +7,7 @@ import Navbar from './components/Navbar/Navbar';
 import Footer from './components/Footer/Footer';
 import Appointments from './pages/Appointments/Appointments';
 import RequireAuth from './RequireAuth';
+import MyAppointments from './pages/MyAppointments/MyAppointments';
 
 
 function App() {
@@ -40,6 +41,9 @@ function App() {
       <Route path='/appointments' element={<RequireAuth>
         <Appointments />
       </RequireAuth>} />
+      <Route path='/profile'>
+        <Route index element={<MyAppointments />}></Route>
+      </Route>
     </Routes>
     {location.pathname === '/login' || location.pathname === '/register' ? <></> : <Footer />}
   </div>;

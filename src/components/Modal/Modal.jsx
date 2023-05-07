@@ -39,7 +39,7 @@ const Modal = ({ details, setDetails, date, userData }) => {
 
         gsap.to(containerRefSm.current, {
             opacity: 0,
-            top: '10vh',
+            top: '50vh',
             duration: 0.5
         })
 
@@ -47,6 +47,8 @@ const Modal = ({ details, setDetails, date, userData }) => {
             opacity: 0,
             duration: 0.5
         })
+        document.body.classList.remove('overflow-y-hidden')
+
 
         setTimeout(() => setDetails(-1), 500)
     }
@@ -72,11 +74,16 @@ const Modal = ({ details, setDetails, date, userData }) => {
 
         // console.log(e.target);
 
-        axios.put(`${url}services/${details._id}`, data, {
-            headers: {
-                token: localStorage.getItem('token')
-            },
-        }).then(res => console.log(res))
+        if (e.target.slot.value &&
+            e.target.fullname.value &&
+            e.target.email.value &&
+            e.target.email.value) {
+            axios.put(`${url}services/${details._id}`, data, {
+                headers: {
+                    token: localStorage.getItem('token')
+                },
+            }).then(res => console.log(res))
+        }
 
         // console.log(details);
 
@@ -103,8 +110,8 @@ const Modal = ({ details, setDetails, date, userData }) => {
                     <InputField type='submit' value='submit' className="bg-dark w-full mt-[23px] rounded-[8px] py-[12px] text-center uppercase text-normal text-[#D4D9E3]" />
                 </form>
             </div>
-            <div className='absolute h-screen w-screen flex lg:hidden items-end lg:items-center justify-center bg-[rgba(0,0,0,0.5)] top-0 left-0 z-50 overflow-hidden'>
-                <form onSubmit={handleSubmit} className="bg-white w-full lg:w-1/3 rounded-b-none lg:rounded-b-[18px] rounded-[18px] p-[19px] relative top-[10vh] opacity-0" ref={containerRefSm}>
+            <div className='fixed h-screen w-screen flex lg:hidden items-end lg:items-center justify-center bg-[rgba(0,0,0,0.5)] top-0 left-0 z-50 overflow-hidden opacity-0' ref={bodyRef}>
+                <form onSubmit={handleSubmit} className="bg-white w-full lg:w-1/3 rounded-b-none lg:rounded-b-[18px] rounded-[18px] p-[19px] relative top-[50vh] opacity-0" ref={containerRefSm}>
                     <span onClick={closeModal} className='bg-dark cursor-pointer absolute top-[8px] right-[7px] w-[36px] h-[36px] rounded-full text-[#8391ad] text-[30px] flex items-center justify-center'>&times;</span>
                     <h4 className='text-heading-4 font-semibold'>{details.name}</h4>
                     <InputField name='date' disabled={true} className='w-full p-[12px] mt-[47px] bg-[#e6e6e6] rounded-[8px]' value={date} onChange={e => console.log(e)} />

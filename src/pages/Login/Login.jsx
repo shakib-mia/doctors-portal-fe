@@ -4,6 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import { getAuth } from 'firebase/auth';
 import app from '../../firebase.config';
+import GoogleSignIn from '../../components/GoogleSignIn/GoogleSignIn';
 
 const Login = () => {
     const auth = getAuth(app);
@@ -62,7 +63,8 @@ const Login = () => {
                     <hr className='w-full h-[1px] bg-[#CFCFCF] mr-[5px]' />
                 </div>
 
-                <button className='w-full text-center py-[13px] rounded-[8px] border-[1px] border-dark hover:bg-dark hover:text-white'>CONTINUE WITH GOOGLE</button>
+                {/* <button className='w-full text-center py-[13px] rounded-[8px] border-[1px] border-dark hover:bg-dark hover:text-white'>CONTINUE WITH GOOGLE</button> */}
+                <GoogleSignIn />
             </div>
         </div>
     );

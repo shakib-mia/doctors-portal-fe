@@ -12,6 +12,9 @@ const GoogleSignIn = () => {
     const handleGoogle = () => {
         signInWithGoogle();
     }
+    if (error) {
+        console.log(error);
+    }
 
     if (user) {
         // console.log(user);

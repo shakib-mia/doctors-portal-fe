@@ -16,6 +16,7 @@ const Register = () => {
     const [createUserWithEmailAndPassword, user, loading, error] = useCreateUserWithEmailAndPassword(auth);
     // const [signInWithGoogle, user, loading, error] = useSignInWithGoogle(auth);
 
+    if (user) { }
 
     const handleRegister = (e) => {
         e.preventDefault();

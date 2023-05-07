@@ -54,7 +54,7 @@ const Navbar = () => {
             text: 'Contact Us',
             link: '/contact-us'
         }, userData ? {
-            text: <>{userData.name ? <span>{userData.name}</span> : userData.email} <button className='bg-[#d32f2f] text-white px-5 py-2 rounded' onClick={() => {
+            text: <>{userData.name ? <Link to='/profile'>{userData.name}</Link> : userData.email} <button className='bg-[#d32f2f] text-white px-5 py-2 rounded' onClick={() => {
                 localStorage.removeItem('token');
                 navigate('/')
                 window.location.reload();
