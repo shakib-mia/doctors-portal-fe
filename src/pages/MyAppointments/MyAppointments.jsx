@@ -28,13 +28,10 @@ const MyAppointments = () => {
         document.body.style.overflowY = 'auto'
     }
 
+    console.log(appointments);
+
 
     const deleteAppointment = (id) => {
-
-        // console.log(appointments);
-
-
-        // appointments.filter
 
         const config = {
             headers: {
@@ -44,11 +41,15 @@ const MyAppointments = () => {
             }
         }
 
+        const currentAppointment = appointments.find(app => app._id === id);
+        console.log(currentAppointment);
+
         axios.delete(url + 'services/' + id, config)
             .then(res => {
                 const bookedItem = res.data[0]
 
-                bookedItem.slots = [...bookedItem.slots,]
+                // bookedItem.slots = [...bookedItem.slots, { date: currentAppointment.date, time: currentAppointment.slot }];
+                console.log(bookedItem);
             })
     }
 

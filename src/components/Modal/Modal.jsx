@@ -13,13 +13,13 @@ const Modal = ({ details, setDetails, date, userData }) => {
         gsap.to(containerRef.current, {
             opacity: 1,
             top: 0,
-            duration: 0.5
+            duration: 0.4
         })
 
         gsap.to(containerRefSm.current, {
             opacity: 1,
             top: 0,
-            duration: 0.5
+            duration: 0.4
         })
         gsap.to(bodyRef.current, {
             opacity: 1,
@@ -34,13 +34,13 @@ const Modal = ({ details, setDetails, date, userData }) => {
         gsap.to(containerRef.current, {
             opacity: 0,
             top: '-10vh',
-            duration: 0.5
+            duration: 0.4
         })
 
         gsap.to(containerRefSm.current, {
             opacity: 0,
             top: '50vh',
-            duration: 0.5
+            duration: 0.4
         })
 
         gsap.to(bodyRef.current, {
@@ -52,6 +52,7 @@ const Modal = ({ details, setDetails, date, userData }) => {
 
         setTimeout(() => setDetails(-1), 500)
     }
+    // console.log(date);
 
     const handleSubmit = e => {
         e.preventDefault();
@@ -61,40 +62,44 @@ const Modal = ({ details, setDetails, date, userData }) => {
 
         const bookingDetails = {
             name: details.name,
-            slot: e.target.slot.value,
+            slot: { date, time: e.target.slot.value },
             fullName: e.target.fullname.value,
             phone: e.target.email.value,
             email: e.target.email.value,
         }
+
+        console.log(bookingDetails);
 
         const data = {
             service: details,
             booking: bookingDetails
         }
 
-        // console.log(e.target);
+        // if (e.target.fullname.value.length) {
+        //     e.target.fullname.setCustomValidity('this field is required')
+        // }
+
+        // if (e.target.phone.value.length) {
+        //     e.target.phone.setCustomValidity('this field is required')
+        // }
 
         if (e.target.slot.value &&
             e.target.fullname.value &&
             e.target.email.value &&
-            e.target.email.value) {
+            e.target.phone.value) {
             axios.put(`${url}services/${details._id}`, data, {
                 headers: {
                     token: localStorage.getItem('token')
                 },
             }).then(res => console.log(res))
         }
-
-        // console.log(details);
-
-
-
-        // console.log(e.target.email.value, e.target.slot.value);
     }
+
+    console.log(date);
 
     return (
         <>
-            <div className='fixed h-screen w-screen hidden lg:flex items-end lg:items-center justify-center bg-[rgba(0,0,0,0.5)] top-0 left-0 z-50 overflow-hidden opacity-0' ref={bodyRef}>
+            <div className='fixed h-screen w-screen hidden lg:flex items-end lg:items-center justify-center bg-[rgba(0,0,0,0.5)] top-0 left-0 z-50 overflow-hidden' ref={bodyRef}>
                 <form onSubmit={handleSubmit} className="bg-white w-full lg:w-1/3 rounded-b-none lg:rounded-b-[18px] rounded-[18px] p-[19px] relative top-[-10vh] opacity-0" ref={containerRef}>
                     <span onClick={closeModal} className='bg-dark cursor-pointer absolute top-[8px] right-[7px] w-[36px] h-[36px] rounded-full text-[#8391ad] text-[30px] flex items-center justify-center'>&times;</span>
                     <h4 className='text-heading-4 font-semibold'>{details.name}</h4>

@@ -8,6 +8,7 @@ import Footer from './components/Footer/Footer';
 import Appointments from './pages/Appointments/Appointments';
 import RequireAuth from './RequireAuth';
 import MyAppointments from './pages/MyAppointments/MyAppointments';
+import error from './assets/images/error.webp'
 
 
 function App() {
@@ -44,6 +45,9 @@ function App() {
       <Route path='/profile'>
         <Route index element={<MyAppointments />}></Route>
       </Route>
+      <Route path='*' element={<div className='h-screen flex items-center justify-center'>
+        <img src={error} alt='error' />
+      </div>} />
     </Routes>
     {location.pathname === '/login' || location.pathname === '/register' ? <></> : <Footer />}
   </div>;
